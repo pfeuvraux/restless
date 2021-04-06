@@ -12,6 +12,10 @@ class Box:
     self.model.data = restless.crypto.encrypt(self.model)
     return self.model
 
+  def decrypt(self):
+    self.model.data = restless.crypto.decrypt(self.model)
+    return self.model
+
   def __dict__(self):
     return self.model.dict()
 
