@@ -35,7 +35,7 @@ def encrypt(model):
 def decrypt(model):
 
   cipher = Ciphers.ciphers[model.cipher]
-  enc = Cipher(model.key)
+  enc = cipher(model.key)
 
   return enc.decrypt(
     data=model.data
