@@ -5,7 +5,9 @@ import restless.utils
 
 class Box:
 
-  def __init__(self, model: dict):
+  def __init__(self, model: dict, gen_key: bool = True):
+    if gen_key:
+      model['key'] = restless.crypto.kdf()
     self.model = BoxModel(**model)
 
   def encrypt(self):
