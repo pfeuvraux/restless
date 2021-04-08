@@ -52,3 +52,11 @@ print(encrypted_data.data)
 
 decrypted_data = b.decrypt(encrypted_data)
 ```
+
+# Tests
+
+```sh
+
+pipenv sync &&
+pipenv run pytest -vvv -s
+```

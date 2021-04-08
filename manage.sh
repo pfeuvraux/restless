@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+echo "I haven't been tested yet"
+
 _me=`readlink -f $0`
 _curr_dir=`dirname $_me`
 
