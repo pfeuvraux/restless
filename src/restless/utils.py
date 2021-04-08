@@ -17,5 +17,13 @@ def bytes_to_str(data: bytes) -> str:
 
 def bytes_to_base64(data: bytes) -> str:
     return bytes_to_str(
-      data=base64.encode(data)
+      data=base64.b64encode(data)
     )
+
+def bytes_to_str_jsonencoder(data: bytes) -> str:
+
+  try:
+    res = bytes_to_str(data)
+  except UnicodeDecodeError:
+    res = bytes_to_base64(data)
+  return res

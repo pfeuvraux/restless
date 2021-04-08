@@ -24,11 +24,9 @@ class KDF:
     "pbkdf2": {
       "algorithm": SHA384,
       "length": 32, # 256 bits
-      "salt": rand_gen(8), # 64 bits
       "iterations": 15000
     },
     "scrypt": {
-      "salt": rand_gen(8),
       "length": 32,
       "n": 2**14,
       "r": 8,
@@ -59,12 +57,22 @@ def decrypt(model):
     associated_data=model.auth_data
   )
 
-def kdf(passphrase: bytes = None, kdf_func: str = "pbkdf2"):
+def kdf(passphrase: bytes = None, kdf_func: str = "pbkdf2", salt: bytes = None):
 
   if passphrase is None:
     passphrase = rand_gen(64)
 
   _kdf = KDF.funcs[kdf_func]
-  _kdf = _kdf(**KDF.params[kdf_func])
+  _kdf_obj = KDF.params[kdf_func]
+
+  if salt is None:
+    _kdf_obj['salt'] = rand_gen(8)
+  else:
+      if type(salt) is bytes:
+        _kdf_obj['salt'] = salt
+      else:
+        raise TypeError
+
+  _kdf = _kdf(**_kdf_obj)
 
   return _kdf.derive(passphrase)
