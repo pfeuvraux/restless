@@ -17,6 +17,7 @@ class BoxModel(BaseModel):
   iv: Optional[bytes] = rand_gen(12)
   auth_data: Optional[bytes] = rand_gen(12)
   cipher: Optional[str] = "aes-gcm"
+  salt: Optional[bytes]
   encrypted: bool = False
 
   class Config:

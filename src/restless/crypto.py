@@ -75,4 +75,7 @@ def kdf(passphrase: bytes = None, kdf_func: str = "pbkdf2", salt: bytes = None):
 
   _kdf = _kdf(**_kdf_obj)
 
-  return _kdf.derive(passphrase)
+  return (
+    _kdf.derive(passphrase),
+    _kdf_obj['salt']
+  )

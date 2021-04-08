@@ -7,7 +7,7 @@ class Box:
 
   def __init__(self, model: dict, gen_key: bool = False):
     if gen_key:
-      model['key'] = restless.crypto.kdf()
+      model['key'], model['salt'] = restless.crypto.kdf()
     self.model = BoxModel(**model)
 
   def encrypt(self):

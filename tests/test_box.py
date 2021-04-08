@@ -18,6 +18,7 @@ class Test_encrypt:
 
   self_generated_key_payload = {
     "key": os.urandom(32),
+    "salt": os.urandom(8),
     "data": b"Vivelesdindes"
   }
   self_generated_key_genkey = False

@@ -16,7 +16,7 @@ class Test_kdf:
     salt: bytes = os.urandom(8)
   ):
 
-    derived_key = kdf(
+    derived_key, salt = kdf(
       passphrase=str_to_bytes(kdf_func_passphrase_pbkdf),
       kdf_func="pbkdf2",
       salt=salt
