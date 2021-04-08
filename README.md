@@ -50,7 +50,8 @@ encrypted_data = b.encrypt()
 print(encrypted_data.data)
 # b'\x8e$\x9eR\xec0[\xfb\xb4\x1e\x80\xe1-\x907\xd02\x07\xbd&T"f\xfe_\x0e\x96\x0c\x08'
 
-decrypted_data = b.decrypt(encrypted_data)
+t = restless.box.Box(encrypted_data)
+print(t.decrypt())
 ```
 
 # Tests
