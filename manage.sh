@@ -12,6 +12,7 @@ function usage() {
 }
 
 function _build() {
+    echo "toto"
 
     function usage() {
         echo "--help    Shows this manual."
@@ -20,7 +21,8 @@ function _build() {
 
     function _build() {
         rm -rf $_curr_dir/{sdist,build}
-        python3 -m build $_curr_dir
+        cd $_curr_dir
+        python3 setup.py sdist
     }
 
     case $1 in
@@ -37,20 +39,28 @@ function _install() {
     }
 
     function _from_build() {
-        pip3 install $_curr_dir/build/*.whl
+        pip3 install $_curr_dir/dist/*.tar.gz
     }
+
+   case $1 in
+       "--from-build") _from_build;;
+       *) usage;;
+   esac
 }
 
 [[ $# -lt 2 ]] && usage
-while [[ $# -gt 2 ]];do
+
+while [[ $# -ge 2 ]];do
     arg=$1
-    
+    echo $arg
     case $arg in
         "build")
+             shift
             _build $@;;
         "install")
+            shift
             _install $@;;
         *)
             usage;;
-    esac
+    esac; shift
 done

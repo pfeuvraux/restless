@@ -11,7 +11,7 @@ Relies on [AN END-TO-END ENCRYPTED PROTOCOL FOR CLOUD STORAGE SOLUTIONS](https:/
 # Just check the written tests at ./tests/ if you 
 # seek for an advanced usage.
 
-import restless.box.Box
+import restless.box
 from restless.utils import str_to_bytes
 
 plaintext = "Vive les dindes" # "Long live turkeys", literally, or "turkeys rock"
@@ -35,7 +35,7 @@ decrypted_dict = b.todict()
 The other way around should work as well:
 
 ```py
-import restless.box.Box
+import restless.box
 from restless.utils import str_to_bytes
 
 plaintext = "totolafrite" # "toto the French fries"
@@ -50,7 +50,8 @@ encrypted_data = b.encrypt()
 print(encrypted_data.data)
 # b'\x8e$\x9eR\xec0[\xfb\xb4\x1e\x80\xe1-\x907\xd02\x07\xbd&T"f\xfe_\x0e\x96\x0c\x08'
 
-t = restless.box.Box(encrypted_data)
+encrypted_data_to_dict = encrypted_data.todict()
+t = restless.box.Box(**encrypted_data_to_dict)
 print(t.decrypt())
 ```
 
