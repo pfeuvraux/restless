@@ -4,6 +4,22 @@ Relies on [AN END-TO-END ENCRYPTED PROTOCOL FOR CLOUD STORAGE SOLUTIONS](https:/
 
 **Don't use it for production purposes**, at your own risks.
 
+# Install
+
+```sh
+make # builds and installs
+make build # creates distribution (tarball) in ./dist
+make install # installs
+make clean # uninstalls and cleans up workspace
+```
+
+# Tests
+
+```sh
+make test # will install dependencies via pipenv,
+          # and run tests
+```
+
 # Usage
 
 ```py
@@ -53,12 +69,4 @@ print(encrypted_data.data)
 encrypted_data_to_dict = encrypted_data.todict()
 t = restless.box.Box(**encrypted_data_to_dict)
 print(t.decrypt())
-```
-
-# Tests
-
-```sh
-
-pipenv sync &&
-pipenv run pytest -vvv -s
 ```
